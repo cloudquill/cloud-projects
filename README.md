@@ -18,13 +18,17 @@ Welcome to the task manager project. It is a simple python project that lets you
 ## Installation
 1. First things first is creating the Azure Cosmos Database:
 - In the search bar at the top of your azure account, type in 'cosmos' then click on 'Azure Cosmos DB'
-![azure_search_bar](\images\search_cosmos.png)
+![search_cosmos](https://github.com/cloudquill/cloud-projects/assets/122037381/73644e00-a60b-4213-9a85-07993eed10c5)
+
 - On the Cosmos DB page, click on 'create.'
-![db_page](\images\create_db.png)
+![create_db](https://github.com/cloudquill/cloud-projects/assets/122037381/05e45e29-a4cc-4d1c-8a97-8c33613b1d0e)
+
 - The next step is choosing the API for the database account. For this project, we'll go with the NoSQL option.
-![nosql_option](\images\nosql_api.png)
+![nosql_api](https://github.com/cloudquill/cloud-projects/assets/122037381/8592a693-3dea-44d3-a21e-45ecd3fcb145)
+
 - Then we fill out just the 'Basic' section in the setup page. Ensure to select the 'serveless' option for the capacity mode to keep costs low.
-![serverless_capacity_mode](\images\serverless.png)
+![serverless](https://github.com/cloudquill/cloud-projects/assets/122037381/215abc75-d720-40b2-a498-06657a8555c8)
+
 - After filling the basic section, click on review+create and then create after validation is completed.
 
 2. After DB creation process is complete, the next step is to create a connection to our DB. This will enable us store, retrieve and perform other operations on our DB. To do this, we would require the DB's Uniform Resource Identifier (URI) and the primary key:
