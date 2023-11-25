@@ -5,11 +5,6 @@ Welcome to the task manager project. It is a simple python project that lets you
 - Update tasks
 - Delete tasks
 
-## Table of Contents
-1. [Prerequisite](#prerequisite)
-2. [Installation](#installation)
-3. Usage
-
 ## Prerequisite
 - An Azure Subscription: if you don't have one, you can [create a free account](https://azure.microsoft.com/en-us/free) and you get free credits to use to deploy cloud resources. 
 - An Azure Cosmos Database: we'll be needing the database URI and connection key.
@@ -45,5 +40,5 @@ pip install -r requirements.txt
 ````python
 python app.py
 ````
-\
-Have fun!
+## Notes
+1. The retry function lets us execute, retry and control the execution of a function if it fails. If a function fails to run successfully, it is executed again a maximum of three times with a 5 second delay between each retry. It is accompanied with a lambda function that delays the execution of methods or initializers until called by the retry function.

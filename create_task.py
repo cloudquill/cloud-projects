@@ -13,13 +13,14 @@ priority = validate_priority()
 # new_task is a dictionary that stores a task's details.
 new_task = {
   'id': str(uuid.uuid4()),
-  'Title': title,
-  'Description': desc,
-  'Due Date': due_date,
+  'title': title,
+  'description': desc,
+  'due_date': due_date,
   'priority': priority
 }
 
-
+# See the shared_functions module to understand what the retry function does.
+# The lambda function delays the execution of the create_item() method until called by the retry function.
 result = retry(lambda: container.create_item(new_task))
 
 # If the variable result contained a string, that will mean an error occurred.
