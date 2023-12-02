@@ -3,7 +3,7 @@
 
 from dbsetup import container
 from tabulate import tabulate
-from shared_functions import retry, validate_priority, validate_due_date
+from shared_functions import retry, validate_priority, validate_due_date, display_tasks
 
 # Define constants for filter options.
 # This makes it easier to understand the purpose and meaning of each option within the code.
@@ -34,7 +34,7 @@ def create_filter_params():
       print('Expecting a number input. Please input a number from 1-3.\n')
 
 def form_query(filter_params):
-  query = 'SELECT t.title, t.description, t.due_date, t.priority FROM Tasks t'
+  query = 'SELECT t.id, t.title, t.priority, t.due_date, t.description FROM Tasks t'
 
   # Query parameters are variables that store dynamic query values.
   # Using this method, the dynamic value is treated strictly as a value and not, let's say, as an SQL statement if it were inputted.
@@ -68,22 +68,8 @@ def search_db(query):
 
   return result
 
-def display_tasks(tasks):
-    headers = ['Title', 'Description', 'Due Date', 'Priority']
-    rows = []
-
-    for task in tasks:
-      title = task['title']
-      description = task['description']
-      due_date = task['due_date']
-      priority = task['priority']
-      rows.append([title, description, due_date, priority])
-
-    table = tabulate(rows, headers=headers)
-    print(table)
-
 def read_all_tasks():
-  query = 'SELECT t.title, t.description, t.due_date, t.priority FROM Tasks t'
+  query = 'SELECT t.id, t.title, t.description, t.due_date, t.priority FROM Tasks t'
   tasks = search_db([query, []])
   display_tasks(tasks)
 

@@ -2,7 +2,8 @@ import re
 import time
 import calendar
 from datetime import datetime
-from azure.core.exceptions import ServiceRequestError
+from tabulate import tabulate
+from azure.core.exceptions import ServiceRequestError, ServiceResponseError
 from requests.exceptions import ConnectionError, RequestException
 from azure.cosmos.exceptions import CosmosHttpResponseError, CosmosResourceNotFoundError
 
@@ -21,7 +22,7 @@ def retry(function, max_attempts=3, delay=5):
             print('An error occurred during the query execution: ', str(e))
         except CosmosResourceNotFoundError as e:
             print("The specified resource was not found:", str(e))
-        except RequestException as e:
+        except (RequestException, ServiceResponseError) as e:
             print(f'An error occured while making the request to the container: {str(e)}')
         
         if attempt < max_attempts:
@@ -108,3 +109,19 @@ def validate_priority():
       print('Invalid priority. Please choose from: High, Medium or Low.')
     else:
       return priority
+
+def validate_keyword():
+  while True:
+    keyword = input('Input the search keyword: ')
+    keyword_pattern = r'^[\w .,/_+!?"]+$'
+
+    if re.match(keyword_pattern, keyword):
+      return keyword
+    else:
+      print('Your keyword contains disallowed characters. Only alphanumeric characters, space and these puctuations (.,/_+!?") are allowed.')
+
+def display_tasks(data):
+  print(tabulate(
+    [[item['id'], item['title'], item['priority'], item['due_date'], item['description']] for item in data],
+    headers=['Id', 'Title', 'Priority', 'Due Date', 'Description']
+  ))
