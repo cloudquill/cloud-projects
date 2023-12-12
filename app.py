@@ -15,6 +15,6 @@ while True:
       subprocess.run(['python', './update_task.py'])
       break
     else:
-      print('Invalid option. You can only create or read a task for now so please input either 1 or 2.')
+      print('Invalid option. Please input a number from the range 1-3.')
   except ValueError:
     print('Expecting a number input. Please input either 1 or 2.\n')
